@@ -20,8 +20,8 @@ class Player:
         self.name = name
         self.cards = []
         self.points = 0
-        self.num_same_cards = 0
-        self.num_same_values = 0
+        self.num_same_cards = 0 # same color
+        self.num_same_values = 0 # same value
         self.game = game
 
     def count_points(self):
@@ -54,6 +54,7 @@ class Player:
         self.cards[index] = self.game.generate_card_code()
         return self.cards
 
+    # -TODO- work on the output (make it look "slay")
     def print_cards(self):
         for i in range(0, 5):
             print(self.game.card_decode(self.cards[i]), end = ", ")

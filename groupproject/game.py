@@ -3,6 +3,17 @@ from random import randint
 from player import *
 import database
 
+# TODO final: 1. make output better,
+# TODO        2. add full winning condition (outside of points)
+# TODO        3. put repeated code into functions
+# TODO        4. error handling
+# TODO : presentation
+# TODO : MD file
+
+# presentation - together
+# md file - beso
+# code lika : 1, 4
+# code nia : 2, 3
 
 class Game(object):
     COLORS = database.COLORS
@@ -20,8 +31,7 @@ class Game(object):
             self.players.append(player)
             print(f"Adding the player {player.name} to the game...")
 
-    # card functions
-
+    # -TODO- color/value generate straight from the list
     def generate_card_code(self):
         while True:
             color = randint(1, 4)
@@ -75,7 +85,7 @@ def find_loser(weird_poker):
             return None
     return min_player
 
-
+# -TODO- make better output
 def game_loop(weird_poker):
     for player in weird_poker.players:
         player.add_cards()
@@ -101,6 +111,7 @@ def game_loop(weird_poker):
             player.print_cards()
             print()
 
+    # -TODO- implement winner logic
     # see the looser
     min_player = find_loser(weird_poker)
     if min_player is None:
@@ -120,7 +131,6 @@ def game_loop(weird_poker):
     weird_poker.players.remove(min_player)
 
     print(f"Player {weird_poker.players[0].name} has won with {weird_poker.players[0].points}, congratulations.")
-
 
 def main():
     grand_game_loop()
