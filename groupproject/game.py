@@ -26,10 +26,10 @@ class Game(object):
 
     def add_player(self, player: "Player"):
         if len(self.players) >= 3:
-            print("Number of players in a game is full, please wait for a new game. ")
-        else:
-            self.players.append(player)
-            print(f"Adding the player {player.name} to the game...")
+        print("The game has reached its maximum capacity of 3 players. Please wait for the next game.")
+    else:
+        self.players.append(player)
+        print(f"Player '{player.name}' has been successfully added to the game.")
 
     # -TODO- color/value generate straight from the list
     def generate_card_code(self):
@@ -60,10 +60,10 @@ class Game(object):
 def grand_game_loop():
     weird_poker = Game()
     # game creation
-    print("Welcome to the game!")
+    print("Welcome to Weird Poker! Let the fun begin.")
     # adding players to the game
     for i in range(1, 4):
-        name = input(f"Player {i}, enter your name: ")
+        name = input(f"Player {i}, please enter your name: ")
         player_i = Player(name, weird_poker)
         weird_poker.add_player(player_i)
     while len(weird_poker.players) > 1:
@@ -89,7 +89,7 @@ def find_loser(weird_poker):
 def game_loop(weird_poker):
     for player in weird_poker.players:
         player.add_cards()
-        print(f"Player {player.name}s cards are: ")
+        print(f"{player.name}'s cards have been dealt:")
         player.print_cards()
         player.count_points()
         print()
@@ -97,17 +97,17 @@ def game_loop(weird_poker):
     # change card
     change_card = False
     for player in weird_poker.players:
-        user_answer = input(f"Player {player.name}, do you want to change any cards? (y/n): ")
+        user_answer = input(f"{player.name}, would you like to change any of your cards? (y/n): ").strip().lower()
         if user_answer == "y":
             index = int(input("Enter the index of the card you want to change (starting from 0): "))
             player.change_card(index)
-            print("Card successfully changed.")
+            print("Your card has been successfully changed.")
             change_card = True
             player.count_points()
 
     if change_card:
         for player in weird_poker.players:
-            print(f"Player {player.name}s current cards are: ")
+            print(f"{player.name}'s updated cards are:")
             player.print_cards()
             print()
 
@@ -117,20 +117,20 @@ def game_loop(weird_poker):
     if min_player is None:
         return
 
-    print(f"Player {min_player.name} has {min_player.points} points, and lost.")
+    print(f"{min_player.name} has {min_player.points} points and has been eliminated from the game.")
     weird_poker.players.remove(min_player)
 
     if len(weird_poker.players) == 1:
-        print(f"Player {weird_poker.players[0].name} has won with {weird_poker.players[0].points}, congratulations.")
+        print(f"Congratulations {weird_poker.players[0].name}! You have won the game with {weird_poker.players[0].points} points.")
         return
 
     min_player = find_loser(weird_poker)
     if min_player is None:
         return
-    print(f"Player {min_player.name} has {min_player.points} points, and lost.")
+    print(f"{min_player.name} has {min_player.points} points and has been eliminated from the game.")
     weird_poker.players.remove(min_player)
 
-    print(f"Player {weird_poker.players[0].name} has won with {weird_poker.players[0].points}, congratulations.")
+    print(f"Congratulations {weird_poker.players[0].name}! You have won the game with {weird_poker.players[0].points} points.")
 
 def main():
     grand_game_loop()
