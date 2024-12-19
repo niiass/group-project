@@ -1,8 +1,8 @@
-from cards_dealer import four_decks
+from dealer import four_decks
 from manager import Player
 import random
 import time
-from cards_dealer import cards
+from dealer import cards
 
 
 def clear_screen_and_delay(delay=0):

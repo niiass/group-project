@@ -1,4 +1,4 @@
-from cards_dealer import names
+from dealer import names
 from winner import game
 
 
