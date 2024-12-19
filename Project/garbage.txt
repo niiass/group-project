@@ -1,0 +1,50 @@
+def is_tie(players):
+    print("Here are your cards:")
+    for player in players:
+        print(f"{player.name} has: {player.cards}")
+
+    no_exchange = True
+
+    # Asks wether first player wants to change card or not
+    choice_first = input(f"Does {players[0].name} want to exchange one card? (y/n): ")
+    while choice_first != 'n' and choice_first != 'y':
+        print("Invalid input! Try again!")
+        choice_first = input(f"Does {players[0].name} want to exchange one card? (y/n): ")
+
+    if choice_first == 'y':
+        no_exchange = False
+        exchange_card(players, 0)
+    else:
+        print("Okay, your cards stay the same. Let's move on...")
+
+    # Asks wether second player wants to change card or not
+    choice_second = input(f"Does {players[1].name} want to exchange one card? (y/n): ")
+    while choice_second != 'n' and choice_second != 'y':
+        print("Invalid input! Try again!")
+        choice_second = input(f"Does {players[1].name} want to exchange one card? (y/n): ")
+
+    if choice_second == 'y':
+        no_exchange = False
+        exchange_card(players, 1)
+    else:
+        print("Okay, your cards stay the same. Let's move on...")
+
+    # Asks wether third player wants to change card or not
+    choice_third = input(f"Does {players[2].name} want to exchange one card? (y/n): ")
+    while choice_third != 'n' and choice_third != 'y':
+        print("Invalid input! Try again!")
+        choice_third = input(f"Does {players[2].name} want to exchange one card? (y/n): ")
+
+    if choice_third == 'y':
+        no_exchange = False
+        exchange_card(players, 2)
+    else:
+        print("Okay, your cards stay the same. Let's move on...")
+
+    # If no exchanges occurred, restart the game. Players remain the same
+    if no_exchange:
+        print("Okay, let's redeal the cards.")
+        return True
+    
+    determine_loser(players)
+    return False
