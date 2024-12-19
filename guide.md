@@ -60,7 +60,7 @@ import time
 
 ## გუნდის წევრები
 
-ნია გოგილაძე - https://github.com/niiass
+ნია გოგილიძე - https://github.com/niiass
 
 ბესიკ მესხია - https://github.com/Besika40k
 
